@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--在ie运行最新的渲染模式-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--上面这句话是为了解决移动设备的分辨率问题，viewport 屏幕窗口大小，content 是宽度等于设备分辨率，1 就是不缩放 1币1-->
+    <title>随风潜入夜2</title>
+    <!-- Bootstrap -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <!--你自己的样式文件 -->
+    <link rel="shortcut icon" href="{{ url_for('static',filename='favicon.ico') }}"
+          type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static',filename='favicon.ico') }}"
+          type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <!--link href="/css/your-style.css" rel="stylesheet"-->
+    <!-- 以下两个插件用于在IE8以及以下版本浏览器支持HTML5元素和媒体查询，如果不需要用可以移除 -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+</head>
+<body>
+
+{% block navbar %}
+{#    <div class="container-fluid" style="background: #f8f8f8;height: 100px">#}
+{#        <div class="head-welcome">#}
+{#            <h1 class="text-center" style="color: #5e5e5e;font-size: 50px">#}
+{#                Hello,{% if current_user.is_authenticated %}{{ current_user.username }}{% else %}陌生人{% endif %}!#}
+{#            </h1>#}
+{#        </div>#}
+{#    </div>#}
+    <div class="navbar navbar-default" role="navigation" style="margin-bottom: 0;">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle" type="button" data-toggle="collapse"
+                        data-target=".navbar-responsive-collapse">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="##" class="navbar-brand">随风潜入夜</a>
+            </div>
+            <div class="collapse navbar-collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">Home</a></li>
+                    {% if current_user.is_authenticated %}
+                        <li>
+                            <a href="{{ url_for('main.user',username=current_user.username) }}">
+                                个人资料
+                            </a>
+                        </li>
+                    {% endif %}
+                    <li><a href="{{ url_for('main.liuyan') }}">留言板</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if current_user.is_authenticated %}
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                               style="color: #2aabd2">{{ current_user.username }}<b class="caret"></b></b> </a>
+                            <ul class="dropdown-menu">
+                                {% if current_user.is_administrator() %}
+                                    <li><a href="{{ url_for('main.posts') }}">编写文章</a></li>
+                                {% endif %}
+                                <li><a href="{{ url_for('auth.change_password') }}">更改密码</a></li>
+                                <li><a href="{{ url_for('auth.change_email_request') }}">更改邮箱</a></li>
+                                <li><a href="{{ url_for('auth.logout') }}">注销</a></li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li><a href="{{ url_for('auth.login') }}">登录</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid" style="background-color: #f8f8f8;">
+
+    <div class="container" style="background-color: white;">
+        <!--Flask 把 get_flashed_messages() 函数开放给模板，用来获取并渲染消息-->
+        {% for message in get_flashed_messages() %}
+            <div class="alert alert-warning alert-dismissable" role="alert">
+                <button class="close" type="button" data-dismiss="alert">&times;</button>
+                {{ message }}
+            </div>
+        {% endfor %}
+        {% block page_content %}{% endblock %}
+    </div>
+    </div>
+{% endblock %}
+
+{#{% block scripts %}#}
+{#    {{ super() }}#}
+{#    {{ moment.include_moment() }}#}
+{#    {{ moment.locale('zh-cn') }}#}
+{#{% endblock %}#}
+
+{#<!-- 如果要使用Bootstrap的js插件，必须先调入jQuery -->#}
+{#<script src='/jquery-3.2.1/jquery-3.2.1.min.js'></script>#}
+{#<!-- 包括所有bootstrap的js插件或者可以根据需要使用的js插件调用　-->#}
+{#<script src="/js/bootstrap.min.js"></script>#}
+<script src='https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js'></script>
+<script src='https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+{#<script src=""></script>#}
+
+</body>
+</html>

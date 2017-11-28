@@ -1,0 +1,55 @@
+<table class="table table-bordered" style="background-color:white;">
+    <tr>
+        <td>
+            <ul class="nav nav-pills nav-stacked" style="max-width: 260px;">
+                <li {% if 'python' == fenleis %}class="active"{% elif fenleis==True %}class="active"{% endif %}><a
+                        href="{{ url_for('.postleibie',fenlei='python') }}"><span
+                        class="badge pull-right">{{ pythonposts }}</span>python</a></li>
+                <li {% if 'flask' == fenleis %}class="active"{% endif %}><a
+                        href="{{ url_for('.postleibie',fenlei='flask') }}"><span
+                        class="badge pull-right">{{ flaskposts }}</span>flask</a></li>
+                <li {% if 'shujuku' == fenleis %}class="active"{% endif %}><a
+                        href="{{ url_for('.postleibie',fenlei='shujuku') }}"><span
+                        class="badge pull-right">{{ shujukuposts }}</span>数据库</a></li>
+                <li {% if 'pacong' == fenleis %}class="active"{% endif %}><a
+                        href="{{ url_for('.postleibie',fenlei='pacong') }}"><span
+                        class="badge pull-right">{{ pacongposts }}</span>爬虫</a></li>
+                <li {% if 'weifenlei' == fenleis %}class="active"{% endif %}><a
+                        href="{{ url_for('.postleibie',fenlei='weifenlei') }}"><span
+                        class="badge pull-right">{{ weifenleiposts }}</span>未分类</a></li>
+            </ul>
+        </td>
+    </tr>
+</table>
+<table class="table table-bordered" style="background-color:white;">
+    <tr>
+        <td class="rdrepingwenzhangtitle" style="padding-bottom: 0px"><h3>热评文章</h3></td>
+    </tr>
+    <tr>
+        <td class="tdrepingwenzhang" style="padding-top: 0px">
+            {% include 'repingposts.html' %}
+        </td>
+    </tr>
+</table>
+<table class="table table-bordered" style="background-color:white;">
+    <tr>
+        <td class="rdrepingwenzhangtitle" style="padding-bottom: 0px"><h3>热评点击</h3></td>
+    </tr>
+    <tr>
+        <td class="tdrepingwenzhang" style="padding-top: 0px">
+            {% include 'rejipost.html' %}
+        </td>
+    </tr>
+</table>
+<table class="table table-bordered" style="background-color:white;">
+    <tr>
+        <td class="rdrepingwenzhangtitle" style="padding-bottom: 0px;"><h3><a href="{{ url_for('.liuyan') }}">留言板</a>
+        </h3></td>
+    </tr>
+    <tr>
+        <td>
+            {% include '_posts.html' %}
+        </td>
+    </tr>
+</table>
+

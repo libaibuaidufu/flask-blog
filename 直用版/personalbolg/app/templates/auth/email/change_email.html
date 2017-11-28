@@ -1,0 +1,7 @@
+<p>Dear {{ user.username }},</p>
+<p>确认新的邮件链接：<a href="{{ url_for('auth.change_email', token=token, _external=True) }}">click here</a>.</p>
+<p>请确认邮件，点击下面的链接：</p>
+<p>{{ url_for('auth.change_email', token=token, _external=True) }}</p>
+<p>来自,</p>
+<p>随风潜入夜</p>
+<p><small>注意:对这个电子邮件地址的回复没有被监控。</small></p>

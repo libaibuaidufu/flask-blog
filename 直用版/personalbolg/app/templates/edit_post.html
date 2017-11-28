@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}随风潜入夜{% endblock %}
+
+{% block page_content %}
+    <div class="page-header">
+        <h1>Hello, {% if current_user.is_authenticated %}{{ current_user.username }}{% else %}Stranger{% endif %}!</h1>
+        <h2>编辑文章</h2>
+    </div>
+    <div>
+        {{ wtf.quick_form(form) }}
+        <div style="padding-top: 20px;padding-bottom: 20px">
+            <a class="btn btn-default" href="{{ url_for('.upload_image',id =id) }}">上传图片</a>
+            <a class="btn btn-default" href="{{ url_for('.delete_image',id =id) }}">删除图片</a>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    {{ pagedown.include_pagedown() }}
+{% endblock %}

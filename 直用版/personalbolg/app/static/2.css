@@ -1,0 +1,197 @@
+div.row {
+    background-color: #f8f8f8;
+    padding-top: 15px;
+    padding-right: 25px;
+    padding-left: 25px
+}
+
+div.col-md-9 {
+    background-color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: solid 2px beige;
+    height: 365px
+}
+
+div.carousel {
+    height: 338px
+}
+
+ol.carousel-indicators {
+    top: 300px
+}
+
+img.headimage {
+    height: 335px;
+    width: 1106px
+}
+
+div.col-md-3 {
+    background-color: white;
+    padding-top: 10px;
+    padding-bottom: 2.6px;
+    border: solid 2px beige;
+    height: 365px;
+}
+
+/*repingposts2.html---------------------------*/
+ul.media-list {
+    height: 339.4px
+}
+
+li.rp2li {
+    border-top: solid 1px #DDDDDD
+}
+
+li.media {
+    height: 84.85px;
+    margin-top: 0;
+    padding-top: 15px;
+    border-bottom: solid 1px #DDDDDD;
+}
+
+img.media-object {
+    height: 50px;
+    width: 50px
+}
+
+h4.media-heading {
+    width: 10em;
+    word-wrap: break-word;
+}
+
+/*-------------------------------*/
+div.row {
+    background-color: #f8f8f8;
+    padding-top: 5px;
+    padding-right: 30px;
+    padding-left: 25px
+}
+
+div.page-header {
+    margin-top: 10px;
+}
+
+div.col-md-9 {
+    background-color: white;
+    padding-top: 10px
+}
+
+div.col-md-12 {
+    padding-top: 10px
+}
+
+/*2.html------------------------------*/
+li.media {
+    border-bottom: solid 1px #e0e0e0;
+}
+
+img.media-object {
+    border: 1px;
+    width: 280px;
+    height: 180px;
+    padding-bottom: 5px
+}
+
+div.media-body {
+    height: 170px;
+    padding-left: 20px;
+}
+
+h3.media-heading {
+    margin-bottom: 10px
+}
+
+p.wenzhangtitle {
+    color: black;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    padding-left: 10px;
+    width: 19em;
+    word-wrap: break-word;
+}
+
+small.xiaobiaoqian {
+    left: auto;
+    margin-top: 0px
+}
+
+a.biaoqian {
+    padding-left: 10px;
+    padding-right: 10px
+}
+
+span.glyphicon {
+    float: right;
+    padding-top: 5px
+}
+
+p.wenzhangbody {
+    font-size: 15px;
+    padding-left: 10px;
+    width: 30em;
+    word-wrap: break-word;
+}
+
+div.post-footer {
+    text-align: right;
+    position: relative;
+    top: -5px;
+    float: right
+}
+
+/*--------------------------------------------*/
+div.col-md-3 {
+    padding-right: 0px;
+}
+/*cenlan.html-----------------------------*/
+div.table{
+    background-color:white;
+}
+ul.nav{
+    max-width: 260px;
+}
+td.rdrepingwenzhangtitle{
+    padding-bottom: 0px
+}
+td.tdrepingwenzhang{
+    padding-top: 0px
+}
+/*-------------------------*/
+/*_posts3.html-------------------------*/
+ul.posts{
+        list-style-type: none;
+    padding: 0px;
+    margin: 16px 0px 0px 0px;
+    border-top: 1px solid #e0e0e0;
+}
+ul.posts li.post {
+    padding: 8px;
+    border-bottom: 1px solid #e0e0e0;
+}
+div.post-content {
+    margin-left: 48px;
+    min-height: 48px;
+}
+div.post-body{
+    min-height: 630px
+}
+h1.text-center{
+    font-size: 30px
+}
+a.zuozename{
+    padding-right: 30px
+}
+div.neirongbody{
+    font-size: 18px
+}
+/*上面index.html完了---------------------------*/
+
+
+
+
+
+
+
+
+

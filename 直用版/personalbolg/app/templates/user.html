@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% import "_macros.html" as macros %}
+
+{% block title %}随风潜入夜{% endblock %}
+
+{% block page_content %}
+    <div style="min-height: 650px">
+        <div class="page-header" style="margin-top: 10px">
+            <div class="media">
+                <a class="media-left" href="#" style="padding-right: 40px;padding-top: 20px">
+                    <img class="img-rounded profile-thumbnail" src="{% if a %}
+                    {{ url_for('static',filename='img/{}/1.jpg'.format(user.username)) }}
+                    {% else %}
+                    {{ user.gravatar(size=256) }}
+                    {% endif %}" style="max-height: 320px;max-width: 213px">
+                </a>
+                <div class="media-body">
+                    <h1>Hello,{{ user.username }}</h1>
+                    <ul class="list-unstyled">
+                        {% if user.name or user.location %}
+                            {% if user.name %}
+                                <li>名字：{{ user.name }}</li>
+                                <li><br></li>
+                            {% endif %}
+                            {% if user.location %}
+                                <li>来自<a href="http://maps.baidu.com/?q={{ user.location }}">
+                                    {{ user.location }}</a></li>
+                                <li><br></li>
+                            {% endif %}
+                        {% endif %}
+                        {% if current_user.is_administrator() %}
+                            <li>邮箱：<a href="mailto:{{ user.eamil }}">{{ user.email }}</a></li>
+                            <li><br></li>
+                        {% endif %}
+                        {% if user.about_me %}
+                            <li>介绍：{{ user.about_me }}</li>
+                            <li><br></li>
+                        {% endif %}
+                        <li>注册于：{{ moment(user.member_since).format("L") }}.</li>
+                        <li><br></li>
+                        {#                    <li>最后一次登录：{{ moment(user.last_seen).fromNow() }}.</li>#}
+                        {#                    <li><br></li>#}
+                        <li>
+                            {% if current_user.can(Permission.FOLLOW) and user != current_user %}
+                                {% if not current_user.is_following(user) %}
+                                    <a class="btn btn-primary"
+                                       href="{{ url_for('.follow',username=user.username) }}">关注</a>
+                                {% else %}
+                                    <a class="btn btn-default" href="{{ url_for('.unfollow',username=user.username) }}">取消关注</a>
+                                {% endif %}
+                            {% endif %}
+                            <a href="{{ url_for('.followers',username=user.username) }}"> &nbsp;粉丝: <span
+                                    class="badge">{{ user.followers.count() - 1 }}</span> &nbsp;</a>
+                            <a href="{{ url_for('.followed_by',username=user.username) }}">关注的人: <span
+                                    class="badge">{{ user.followed.count() - 1 }}</span> &nbsp;</a>
+                            {% if current_user.is_authenticated and user != current_user and user.is_following(current_user) %}
+                                | <span class="label label-default">关注你</span>
+                            {% endif %}
+                        </li>
+                        <li><br></li>
+                        {% if  user == current_user %}
+                            <li><a class="btn btn-default" href="{{ url_for('.upload_file',username=user.username) }}">自定义头像</a>
+                            </li>
+                            <li><br></li>
+                        {% endif %}
+
+                        {% if user == current_user %}
+                            <li><a class="btn btn-default" href="{{ url_for('.edit_profile') }}">编辑资料</a></li>
+                            <li><br></li>
+                        {% endif %}
+                        {% if current_user.is_administrator() %}
+                            <li>
+                                <button type="button" class="btn btn-default" data-toggle="collapse"
+                                        data-target="#demo">
+                                    管理员功能
+                                </button>
+
+                                <div id="demo" class="collapse" style="margin-top: 10px">
+                                    <a class="btn btn-primary" href="{{ url_for('.upload_head_image') }}"
+                                       style="margin-bottom: 10px">首页图片</a>
+                                    <a class="btn btn-primary" href="{{ url_for('.delete_head_image') }}"
+                                       style="margin-bottom: 10px">删除图片</a>
+                                    <a class="btn btn-primary" href="{{ url_for('.head_title') }}"
+                                       style="margin-bottom: 10px">首页题目</a>
+                                    <a class="btn btn-danger" href="{{ url_for('.edit_profile_admin', id=user.id) }}"
+                                       style="margin-bottom: 10px">编辑资料
+                                        [Admin]</a>
+                                </div>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <h3>{{ user.username }}发表的留言</h3>
+        {% include '_posts.html' %}
+
+    </div>
+    {% if pagination %}
+        <div class="pagination">
+            {{ macros.pagination_widget(pagination,'.user',username=user.username) }}
+        </div>
+    {% endif %}
+{% endblock %}

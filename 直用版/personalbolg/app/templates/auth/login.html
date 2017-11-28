@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}随风潜入夜 -login{% endblock %}
+
+{% block page_content %}
+    <div class="page-header">
+        <h1>登录</h1>
+    </div>
+        {{ wtf.quick_form(form) }}
+        <p><a href="{{ url_for('auth.password_reset_request') }}">忘记密码?</a></p>
+        <p>
+            新用户？<a href="{{ url_for('auth.register') }}">注册</a>
+        </p>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script>function changeSub_fund_flag() {
+        var tests = document.getElementsByName('sub_fund_flag');
+        if (tests[0].checked) {
+            tests[0].value = 1;
+            document.write(tests[0].value)//theform为checkbox所在的表单
+        } else {
+            tests[0].value = 0;
+            document.write(tests[0].value)
+        }
+    }
+    </script>
+{% endblock %}

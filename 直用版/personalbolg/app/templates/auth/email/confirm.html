@@ -1,0 +1,8 @@
+<p>Dear {{ user.username }},</p>
+<p>欢迎来到随风潜入夜的博客！</p>
+<p>请确认邮件<a href="{{ url_for('auth.confirm', token=token, _external=True) }}">click here</a>.</p>
+<p>确认你的邮箱地址，请点击下面的链接:</p>
+<p>{{ url_for('auth.confirm', token=token, _external=True) }}</p>
+<p>来自,</p>
+<p>随风潜入夜团队</p>
+<p><small>注意:对这个电子邮件地址的回复没有被监控。</small></p>

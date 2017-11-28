@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "_macros.html" as macros %}
+
+
+{% block title %}随风潜入夜{% endblock %}
+
+{% block page_content %}
+    <div class="row clearfix"
+         style="background-color: #f8f8f8;padding-top: 15px;padding-right: 25px;padding-left: 25px">
+        <div class="col-md-9 column"
+             style="background-color: white;padding-top: 10px;padding-bottom:10px;border: solid 2px beige;height: 365px">
+            <div class="carousel slide" id="carousel-826769" style="height: 338px">
+                <ol class="carousel-indicators" style="top: 300px">
+                    <li class="active" data-slide-to="0" data-target="#carousel-826769">
+                    </li>
+                    <li data-slide-to="1" data-target="#carousel-826769">
+                    </li>
+                    <li data-slide-to="2" data-target="#carousel-826769">
+                    </li>
+                </ol>
+                <div class="carousel-inner">
+                    {% for tl in titles %}
+                        <div {% if loop.first %}class="item active"{% else %}class="item"{% endif %}>
+                            <img class="headimage" alt="" style="height: 335px;width: 1106px"
+                                 src="{{ url_for('static',filename='h{}.jpg'.format(loop.index)) }}"/>
+                            <div class="carousel-caption">
+
+                                <h4>
+                                    {{ tl.title }}
+                                </h4>
+                                <p>
+                                    {{ tl.body }}
+                                </p>
+
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <a class="left carousel-control" href="#carousel-826769" data-slide="prev"><span
+                            class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control"
+                                                                                    href="#carousel-826769"
+                                                                                    data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 column"
+             style="background-color: white;padding-top: 10px;padding-bottom:2.6px;border: solid 2px beige;height: 365px;">
+            {% include 'repingposts2.html' %}
+        </div>
+    </div>
+    <div class="row clearfix" style="background-color: #f8f8f8;padding-top: 5px;padding-right: 30px;padding-left: 25px">
+        <div class="page-header">
+            <div class="col-md-9 well" style="background-color:white;padding-top: 10px">
+                <div class="col-md-12" style="padding-top: 10px">
+                    <table>
+                        <tr>
+                            <td>
+                                {% include '2.html' %}
+                                {% if pagination %}
+                                    <div class="pagination">
+                                        {{ macros.pagination_widget(pagination, '.index') }}
+                                    </div>
+                                {% endif %}
+                                <div class="">
+                                    <p>当地时间：{{ moment(current_time).format("LLL") }}.</p>
+                                    <p>过去了{{ moment(current_time).fromNow(refresh=True) }}</p>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-3" style="padding-right:0px;">
+                {% include 'celan.html' %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
