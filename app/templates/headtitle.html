@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}随风潜入夜 - Edit Title{% endblock %}
+
+{% block page_content %}
+    <div class="page-header">
+        <h1>首页标题</h1>
+    </div>
+    <div class="col-md-4" style="min-height: 680px">
+
+        <p class="text-center text-danger">最后写的在第一个显示</p>
+        <p class="text-center text-danger">同时要确保数据库中最少有三个标题和body，否则会出错</p>
+        {{ wtf.quick_form(form) }}
+    </div>
+{% endblock %}

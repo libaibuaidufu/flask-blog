@@ -1,0 +1,66 @@
+<table class="table table-bordered" style="margin-top:20px;background-color:white;">
+    <tr>
+        <td>
+            <div class="author-card_content" style="height: 225px">
+                <a href="{{ url_for('.user',username='vip') }}"><img
+                        src="{{ url_for('static',filename='headimage.jpg') }}"
+                        style="width: 70px;position: absolute;top:110px;left: 30px;z-index: 1" alt=""></a>
+                <a class="author_avatar-link" href="{{ url_for('.user',username='vip') }}" title="随风潜入夜"
+                   tabindex="-1"><img
+                        src="{{ url_for('static',filename='backimage.jpg') }}"
+                        alt=""
+                        style="width: 237px;height: 120px;"></a>
+                <div class="author-fields text-right" style="padding-right: 20px">
+                    <span style="font-size: 16px;padding-right: 5px"><a
+                            href="{{ url_for('.user',username='vip') }}">随风潜入夜</a></span>
+                    <span class="label label-primary">站长</span>
+
+                    <div class="author-interact" style="padding-right: 60px">
+                        <a class="follow-btn unfollowed" href="javascript: void 0" title="关注该用户" data-uid="1"
+                           data-act="follow"><i></i><span>关注</span></a> <a><i
+                            class="tico tico-envelope"></i>私信</a>
+                    </div>
+                </div>
+                <div class="author-stats" style="padding-top: 20px">
+                    <ul class="list-inline text-center" style="padding-left: 10px">
+                        <li style="width: 55px;">
+                        <span>{{ b }}<span
+                                style="position: relative;top: 20px;left: -20px">文章</span></span></li>
+
+                        <li style="width: 55px"> <span>33<span
+                                style="position: relative;top: 20px;left: -20px">点赞</span></span></li>
+                        <li style="width: 55px"> <span>{{ zuoze.followers.count() - 1 }}<span
+                                style="position: relative;top: 20px;left: -20px">关注</span></span></li>
+                        <li style="width: 55px"> <span>{{ zuoze.followed.count() - 1 }}<span
+                                style="position: relative;top: 20px;left: -20px">粉丝</span></span></li>
+                    </ul>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<table class="table table-bordered" style="margin-top:20px;background-color:white;">
+    <tr>
+        <td>
+            <ul class="nav nav-pills nav-stacked" style="max-width: 260px;">
+                <li {% if 'python' == fenleis %}class="active"{% endif %} }}><a
+                        href="{{ url_for('.postleibie',fenlei='python') }}"><span
+                        class="badge pull-right">{{ pythonposts }}</span>python</a></li>
+                <li {% if 'flsak' == fenleis %}class="active"{% endif %}><a
+                        href="{{ url_for('.postleibie',fenlei='flask') }}"><span
+                        class="badge pull-right">{{ flaskposts }}</span>flask</a></li>
+                <li {% if 'shujuku' == fenleis %}class="active"{% endif %}><a
+                        href="{{ url_for('.postleibie',fenlei='shujuku') }}"><span
+                        class="badge pull-right">{{ shujukuposts }}</span>数据库</a></li>
+                <li {% if 'pacong' == fenleis %}class="active"{% endif %}><a
+                        href="{{ url_for('.postleibie',fenlei='pacong') }}"><span
+                        class="badge pull-right">{{ pacongposts }}</span>爬虫</a></li>
+                <li {% if 'weifenlei' == fenleis %}class="active"{% endif %}><a
+                        href="{{ url_for('.postleibie',fenlei='weifenlei') }}"><span
+                        class="badge pull-right">{{ weifenleiposts }}</span>未分类</a></li>
+            </ul>
+        </td>
+    </tr>
+</table>
+

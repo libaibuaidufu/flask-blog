@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "_macros.html" as macros %}
+
+{% block title %}随风潜入夜- Post{% endblock %}
+
+{% block page_content %}
+
+    <div class="row clearfix" style="background-color: #f8f8f8;padding-top: 5px;padding-right: 15px;padding-left: 15px">
+        <div class="page-header">
+            <div class="col-md-9 well" style="background-color:white;padding-top: 10px;">
+                {% include '2.html' %}
+            </div>
+
+            <div class="col-md-3" style="padding-right:0px;">
+                {% include 'celan.html' %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "_macros.html" as macros %}
+
+{% block title %}随风潜入夜- Post{% endblock %}
+
+{% block page_content %}
+    <div class="col-md-9">
+        {% include '_posts3.html' %}
+
+        {% if current_user.can(Permission.COMMENT) %}
+            <div class="comment-form">
+                {{ wtf.quick_form(form) }}
+            </div>
+            {% else %}
+            <p class="text-center text-danger" style="padding-top: 50px;font-size: 20px">请<a href="{{ url_for('auth.login') }}">登录</a>，才可以评论</p>
+        {% endif %}
+        {% include '_comments.html' %}
+        {% if pagination %}
+            <div class="pagination">
+                {{ macros.pagination_widget(pagination, '.post', fragment='#comments', id=posts[0].id) }}
+            </div>
+        {% endif %}
+    </div>
+    <div class="col-md-3">
+        {% include 'celan2.html' %}
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script>
+        $(document).ready(function () {
+            $("#btn-col").click(function () {
+                var id = {{ post.id }};
+                $.ajax({
+                    url: "{{ url_for('main.tuijian')}}",
+                    type: "GET",
+                    data: "id=" + id,
+                    dataType: "json",
+                    success: function (res) {
+                    }
+                })
+            });
+        });
+    </script>
+
+{% endblock %}

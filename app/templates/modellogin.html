@@ -1,0 +1,44 @@
+<form class="form form-horizontal" method="post" role="form">
+    {{ forms.hidden_tag() }}
+    {{ wtf.form_errors(forms, hiddens="only") }}
+    <!-- 按钮触发模态框 -->
+    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+        {#                开始演示模态框#}登录
+    </button>
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        登录
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    {{ wtf.form_field(forms.email) }}
+                    {{ wtf.form_field(forms.password) }}
+                    {{ wtf.form_field(forms.remember_me) }}
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    </button>
+
+                    {{ wtf.form_field(forms.submit) }}
+
+                    <p><a href="{{ url_for('auth.password_reset_request') }}">忘记密码?</a></p>
+                    <p>
+                        新用户？<a href="{{ url_for('auth.register') }}">注册</a>
+                    </p>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+</form>

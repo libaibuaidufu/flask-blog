@@ -1,0 +1,13 @@
+亲爱的 {{ user.username }},
+
+欢迎来到随风潜入夜的博客！
+
+确认你的邮箱地址，请点击下面的链接:
+
+{{ url_for('auth.confirm',token=token,_external=True) }}
+
+来自，
+
+随风潜入夜团队
+
+注意:对这个电子邮件地址的回复没有被监控。

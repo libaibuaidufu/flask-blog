@@ -1,0 +1,13 @@
+<ul class="media-list" >
+    {% for rp in repingpost %}
+        <li class="media" style="margin-top: 0;padding-top: 8px;padding-bottom: 8px;border-bottom: solid 1px #DDDDDD">
+            <a class="pull-left" href="#">
+                <img class="media-object" src="{{ url_for('static',filename='posts/{}/{}/0.jpg'.format(rp.author.username,rp.id)) }}"
+                     onError="this.src='{{ url_for('static',filename='default.png') }}';" style="height: 50px;width: 50px" alt="...">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading"><a href="{{ url_for('.post',id =rp.id) }}" style="text-decoration:none;">{% if rp.title | length  >=20 %}{{- rp.title[0:20] }}{% else %}{{ rp.title }}{% endif %}</a></h4>
+            </div>
+        </li>
+    {% endfor %}
+</ul>

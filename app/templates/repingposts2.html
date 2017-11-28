@@ -1,0 +1,17 @@
+<ul class="media-list" style="height: 339.4px">
+    <li class="rp2li" style="border-top: solid 1px #DDDDDD"></li>
+    {% for tj in tuijianposts %}
+        <li class="media" style="height: 84.85px;margin-top: 0;padding-top: 15px;border-bottom: solid 1px #DDDDDD;">
+            <a class="pull-left" href="#">
+                <img class="media-object" src="{{ url_for('static',filename='posts/{}/{}/0.jpg'.format(tj.author.username,tj.id)) }}"
+                     onError="this.src='{{ url_for('static',filename='default.png') }}';" style="height: 50px;width: 50px" alt="...">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading"
+                    style="width:10em; word-wrap:break-word;"><a href="{{ url_for('.post',id =tj.id) }}"> {% if tj.title | length  >=20 %}{{- tj.title[0:20] }}{% else %}{{ tj.title }}{% endif %}
+                </a></h4>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+
